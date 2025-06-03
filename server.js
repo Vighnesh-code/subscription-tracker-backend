@@ -5,6 +5,7 @@ import { PORT } from "./config/env.js";
 import authRoutes from "./routes/auth.route.js";
 import userRoutes from "./routes/user.route.js";
 import subscriptionRoutes from "./routes/subscription.route.js";
+import connectToDB from "./db/mongodb.js";
 dotenv.config();
 
 const app = express();
@@ -21,6 +22,7 @@ app.get("/", (req, res) => {
 });
 
 app.listen(PORT, () => {
+  connectToDB();
   console.log(`Server Running on PORT: ${PORT}`);
 });
 
