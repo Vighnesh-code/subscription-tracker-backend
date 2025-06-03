@@ -2,12 +2,19 @@ import express from "express";
 import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
 import { PORT } from "./config/env.js";
+import authRoutes from "./routes/auth.route.js";
+import userRoutes from "./routes/user.route.js";
+import subscriptionRoutes from "./routes/subscription.route.js";
 dotenv.config();
 
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+app.use("/api/v1/auth", authRoutes);
+app.use("/api/v1/users", userRoutes);
+app.use("/api/v1/subscriptions", subscriptionRoutes);
 
 app.get("/", (req, res) => {
   res.send("Welcome to the Subscription Tracker API!");
