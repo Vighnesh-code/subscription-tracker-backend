@@ -7,6 +7,7 @@ import userRoutes from "./routes/user.route.js";
 import subscriptionRoutes from "./routes/subscription.route.js";
 import connectToDB from "./db/mongodb.js";
 import errorMiddleware from "./middlewares/error.middleware.js";
+import arcjetMiddleware from "./middlewares/arcjet.middleware.js";
 dotenv.config();
 
 const app = express();
@@ -14,6 +15,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(errorMiddleware);
+app.use(arcjetMiddleware);
 
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/users", userRoutes);
